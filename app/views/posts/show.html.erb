@@ -1,1 +1,4 @@
-<%= @post.title %>, <%= @post.message %>, <%= @post.created_at %>
+<h1><%= @post.title %></h1> 
+<%= @post.message %><p>
+<small><%= @post.created_at %></small><p>
+<%= link_to 'Back', posts_path %>

@@ -1,0 +1,12 @@
+<h1>All Posts - Timeline</h1>
+
+<ul class="posts">
+  <% @posts.reverse.each do |post| %>
+    <li>
+      <h2><%= link_to post.title, post %></h2><p>
+	  <%= post.message %>
+    </li>
+  <% end %>
+</ul>
+<p>
+<%= link_to 'New Post', new_path %>
