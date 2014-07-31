@@ -15,7 +15,18 @@ class PostsController < ApplicationController
   end
   
   def show
-	@post = Post.find(params[:id])
+	tmp = params[:id]
+	if tmp.to_i != 0							#Verificar se o parametro passado na URL é um Integer
+	  ind = tmp
+	else
+	  list = Post.all
+	  list.each do |post|
+		if post.title.parameterize == tmp		#Verifica se algum Post.title no formato slugify é o mesmo que o parametro passado na URL
+			ind = post.id
+		end
+	  end
+	end
+	@post = Post.find(ind)
   end
   
   def new
