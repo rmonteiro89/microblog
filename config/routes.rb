@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'posts/new'
+  resources :posts
   
   match '/new', to: 'posts#new', via: 'get'
 
