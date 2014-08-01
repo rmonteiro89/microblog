@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 	@posts = Post.all
   end
 
-  def create
+  def create								#Quando é criado um novo post, mostra mensagem de sucesso ou de falha
 	@post = Post.new(post_params)
 	if @post.save
 	  flash[:success] = "NEW POST has been published!"

@@ -2,28 +2,30 @@ require 'spec_helper'
 
 describe "Post Pages" do
   
-  describe "Index" do
+    subject { page }
 	
-	it "should have the content 'All Posts'" do
-	  visit '/posts/'
-	  expect(page).to have_content('All Posts')
-	end
+	describe "Index page" do
+	  before { visit root_path }
 	
-	it "should have the title 'Timeline'" do
-	  visit '/posts/'
-	  expect(page).to have_title('Microblog | Timeline')
+	  it { should have_content('All Posts') }
+	  it { should have_title('Microblog | Timeline') }
 	end
-  end
   
-  describe "New" do
-	it "should have the content 'New Post'" do
-	  visit '/new/'
-	  expect(page).to have_content('New Post')
+	describe "New" do
+      before { visit new_path }
+	  it { should have_content('New Post') }
+	  it { should have_title('Microblog | New Post') }
+	  
+	  it "should have the link to go back" do
+	    visit new_path
+		click_link "Back"
+		expect(page).to have_title('Microblog | Timeline')
+	  end
 	end
 	
-	it "should have the title 'New Post'" do
-	  visit '/new/'
+	it "should have the link to the New Post on the layout" do
+	  visit root_path
+	  click_link "New Post"
 	  expect(page).to have_title('Microblog | New Post')
 	end
-  end
 end
